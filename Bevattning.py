@@ -8,8 +8,8 @@ GPIO.setmode(GPIO.BCM)
 sensor = 2
 relay = 11
 vattna = time.gmtime()
-hour = input("Enter hour")
-minute = input("Enter minute")
+hour = input('Enter hour')
+minute = input('Enter minute')
 #for i in sensorer:
 GPIO.setup(sensor,GPIO.IN)
     
