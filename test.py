@@ -1,4 +1,0 @@
-
-
-print("vattning ar bra")
-
