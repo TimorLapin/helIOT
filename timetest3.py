@@ -42,40 +42,36 @@ if GPIO.input(sensor_3)==0:
                 #delay
 
 
-def kruka_1():
+def kruka_1(dur):
 
-#        tid = time.gmtime()
-#        tid2=(tid[0],tid[1],tid[2],tid[3],tid[4])
-#        tid3=(tid[0],tid[1],tid[2],tim,minut)
 
-#        if tid2==tid3:
         GPIO.output(ventil_1,1)
         GPIO.output(hventil,1)
-                #delay(dur)
-        print('kruka_1')
-def kruka_2():
+                time.sleep(dur)
+               
+        GPIO.output(ventil_1,0)        
+        GPIO.output(hventil,0)
+        
+def kruka_2(dur):
 
-#        tid = time.gmtime()
-#        tid2=(tid[0],tid[1],tid[2],tid[3],tid[4])
-#        tid3=(tid[0],tid[1],tid[2],tim,minut)
 
-#        if tid2==tid3:
         GPIO.output(ventil_2,1)
         GPIO.output(hventil,1)
-        print('kruka_2')
-                #delay(dur)
+      
+        time.sleep(dur)
+        
+        GPIO.output(ventil_2,1)        
+        GPIO.output(hventil,1)
+      
                 
-def kruka_3():
+def kruka_3(dur):
 
-#        tid = time.gmtime()
-#        tid2=(tid[0],tid[1],tid[2],tid[3],tid[4])
-#        tid3=(tid[0],tid[1],tid[2],tim,minut)
 
-#        if tid2==tid3:
         GPIO.output(ventil_3,1)
         GPIO.output(hventil,1)
-        print('kruka_3')
-                #delay(dur)
-
-     
+      
+        time,sleep(dur)
+        
+        GPIO.output(ventil_3,1)        
+        GPIO.output(hventil,1)
 
