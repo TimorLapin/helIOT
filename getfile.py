@@ -1,6 +1,7 @@
 import timetest
 from firebase import firebase
 import time
+import multiprocessing # eller multithreading
 
 
 firebase = firebase.FirebaseApplication('https://heliot-f77cc.firebaseio.com/')
@@ -21,22 +22,42 @@ blom3_dur = firebase.get('/blom3','dur')
 
 print(blom1_tid,blom1_min,blom1_dur)
 
+# Om vi antar att 1,5 lit/tim (1500ml/60min eller 25ml/min) kommer från varje munstyck
+# För enkelhetens skull anta att vi har en munstyck per planta. Två munstyck = 3000ml/tim = 50ml/min
+
+def duration(dur)                   # ex. dur = 2000
+    antal_min = dur/25 = 80         # Man vill vattna med exempelvis 2000 ml
+    brak_tal = 80/60 = 1,33
+    while brak_tal>1
+        brak_tal = brak_tal-1       # 1,33 - 1 = 0,33
+        timmar+=1                   # timmmar = 1
+    minuter = brak_tal * 60         # minuter = 20
+    
+# Det vi får här är, 1 timme och 20 min. Tiden som vi vill ha en ventil öppen. Som vi sedan ställer mot vår time-funktion.
+# Om vi använder multiprocessing/multithreading då kan vi ha en delay i varje funktion på det antal sekunder som motsvarar bevattningen. 
+# ex. om dur = 1500ml/tim då blir delay = 3600 sekunder. Dela med 25, sen gånger 60
 while True:
     
-        tid = time.gmtime()
+        tid = time.asctime()
         tid2 = (tid[0],tid[1],tid[2],tid[3],tid[4])
         tidblom1 = (tid[0],tid[1],tid[2],blom1_tid,blom1_min)
         tidblom2 = (tid[0],tid[1],tid[2],blom2_tid,blom2_min)
         tidblom3 = (tid[0],tid[1],tid[2],blom3_tid,blom3_min)
 
         if tid2==tidblom1:
-            timetest.kruka_1()
+            k = multiprocessing.Process(target=timetest.kruka_1, args(blom1_dur,))
+            k.start()
+            k.join()
 
         if tid2==tidblom2:
-            timetest.kruka_2()
+            k = multiprocessing.Process(target=timetest.kruka_2, args(blom2_dur,))            
+            k.start()            
+            k.join()
 
         if tid2==tidblom3:
-            timetest.kruka_3()
+            k = multiprocessing.Process(target=timetest.kruka_3, args(blom3_dur,))            
+            k.start()            
+            k.join()
 
 
        # time.sleep(100)
